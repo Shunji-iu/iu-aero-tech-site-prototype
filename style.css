@@ -1,0 +1,2846 @@
+/* ページ全体 */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Noto Serif JP", "sans-serif", sans-serif;
+    padding-top: 140px;
+}
+
+/* ====================
+   ヘッダー
+   ==================== */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    height: 140px;
+    background-color: white;
+    border-bottom: 1px solid #ccc;
+    z-index: 9999;
+}
+
+/* 左側：サークル名＋ロゴ */
+.site-logo {
+    width: 32%;
+    height: 140px;
+}
+
+    .site-logo a {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 20px 30px;
+        text-decoration: none;
+        color: #222;
+    }
+
+.site-logo-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+    .site-logo-text small {
+        margin: 0 0 3px;
+        color: #666;
+        font-size: 18px;
+        font-weight: normal;
+        line-height: 1;
+    }
+
+    .site-logo-text span {
+        font-size: 28px;
+        font-weight: bold;
+        white-space: nowrap;
+        line-height: 1.2;
+    }
+
+    .site-logo img {
+        width: 70px;
+        height: 70px;
+        margin-left: 15px;
+        object-fit: contain;
+    }
+
+
+/* 右側全体 */
+.header-right {
+    width: 69%;
+}
+
+
+/* 上段メニュー */
+.upper-menu {
+    height: 70px;
+    border-bottom: 1px solid #ddd;
+}
+
+    .upper-menu ul {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .upper-menu li {
+        margin-left: 25px;
+    }
+    /* よくある質問 */
+    .faq-link {
+        color: #222;
+        text-decoration: none;
+    }
+        .faq-link:hover {
+            color: #1769aa;
+            text-decoration: none;
+        }
+/* お問い合わせ */
+.contact-button {
+    display: block;
+    padding: 10px 20px;
+    background-color: #face1b;
+    font-size: 17px;
+    font-weight: bold;
+    color: #222;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+    .contact-button:hover {
+        background-color: #f3e5a0;
+    }
+
+/* 検索 */
+.search {
+    display: flex;
+    align-items: center;
+}
+    .search input {
+        width: 150px;
+        height: 34px;
+        padding: 5px 10px;
+        border: 1px solid #aaa;
+        outline: none;
+    }
+        .search input:focus {
+            border-color: #555;
+        }
+    .search button {
+        position: relative;
+        width: 40px;
+        height: 34px;
+        border: none;
+        background-color: #292238;
+        cursor: pointer;
+    }
+.search-icon {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border: 2px solid white;
+    border-radius: 50%;
+    top: 8px;
+    left: 12px;
+}
+    .search-icon::after {
+        content: "";
+        position: absolute;
+        width: 7px;
+        height: 2px;
+        background-color: white;
+        transform: rotate(45deg);
+        right: -6px;
+        bottom: -3px;
+    }
+.search button:hover {
+    background-color: #44395c;
+}
+
+.trial-button {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 2px solid #1769aa;
+    border-radius: 6px;
+    color: #1769aa;
+    font-weight: bold;
+    text-decoration: none;
+    transition: .25s;
+    margin-right: 10px;
+}
+
+    .trial-button:hover {
+        background: #1769aa;
+        color: white;
+    }
+
+.meeting-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #1769aa;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.2s, transform 0.2s;
+    margin-right: 15px;
+}
+
+.upper-menu li:has(.meeting-button) {
+    margin-left: 5px;
+}
+
+.meeting-button:hover {
+    background-color: #0f4f83;
+    transform: scale(1.06);
+}
+
+/* ====================
+   下段メニュー
+   ==================== */
+.main-menu {
+    height: 70px;
+}
+
+    .main-menu ul {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .main-menu li {
+        height: 100%;
+    }
+
+    .main-menu a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: 0 30px;
+        color: #222;
+        text-decoration: none;
+        font-size: 17px;
+        font-weight: bold;
+        transition: background-color 0.2s;
+    }
+        .main-menu a:hover {
+            background-color: #eee;
+        }
+        /* 青い下線 */ 
+        .main-menu a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 4px;
+            background-color: #1769aa;
+            transition: width 0.3s ease;
+        }
+        /* 左から右へ伸びる */ 
+        .main-menu a:hover::after {
+            width: 100%;
+        }
+/* ====================
+   メインビジュアル
+==================== */
+.main-visual {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - 140px);
+    overflow: hidden;
+}
+
+.slideshow {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* picture */
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+    /* 表示中 */
+    .slide.active {
+        opacity: 1;
+        z-index: 1;
+    }
+
+    /* img */
+    .slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55px;
+    height: 55px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,.75);
+    font-size: 28px;
+    cursor: pointer;
+    z-index: 20;
+}
+
+.prev {
+    left: 30px;
+}
+
+.next {
+    right: 30px;
+}
+
+    .prev:hover,
+    .next:hover {
+        background: white;
+    }
+.pause-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,255,255,.8);
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 20;
+}
+.dots {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 20;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: white;
+    opacity: .5;
+    cursor: pointer;
+}
+
+    .dot.active {
+        opacity: 1;
+        background: #1769aa;
+    }
+
+/*スマホ-------------------------------*/
+@media (max-width:1164px) {
+
+    .main-visual {
+        position: relative;
+        width: 100%;
+        /* 上から40px下げる */
+        margin-top: 40px;
+        /* 残りの画面高さいっぱい */
+        height: calc(100dvh - 100px);
+        overflow: hidden;
+    }
+
+    .slideshow,
+    .slide {
+        width: 100%;
+        height: 100%;
+    }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+    .prev,
+    .next {
+        width: 42px;
+        height: 42px;
+        font-size: 22px;
+    }
+
+    .pause-button {
+        width: 42px;
+        height: 42px;
+    }
+}
+
+/* ====================
+   トップキャッチコピー
+   ==================== */
+
+.hero-copy {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    z-index: 20;
+    color: white;
+    text-shadow: 0 3px 15px rgba(0,0,0,.45);
+}
+
+.hero-subtitle {
+    margin: 0 0 15px;
+    font-size: 22px;
+    letter-spacing: 4px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards;
+}
+
+.hero-title {
+    margin: 0;
+    font-size: 64px;
+    line-height: 1.4;
+    font-weight: bold;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards;
+    animation-delay: .5s;
+}
+@keyframes fadeUp {
+
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@media(max-width:1164px) {
+
+    .hero-copy {
+        left: 8%;
+        right: 8%;
+    }
+
+    .hero-subtitle {
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+
+    .hero-title {
+        font-size: 38px;
+    }
+}
+
+
+
+/* ====================
+   フッター
+   ==================== */
+
+.footer {
+    position: relative;
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+
+/* コピーライト：中央 */
+.copyright {
+    margin: 0;
+    text-align: center;
+}
+
+
+/* プライバシーポリシー：右端 */
+.footer-policy {
+    position: absolute;
+    right: 30px;
+    color: #666;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+    .footer-policy:hover {
+        text-decoration: underline;
+    }
+@media (max-width: 1164px) {
+
+    .footer {
+        min-height: auto;
+        padding: 15px 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .footer-policy {
+        position: static;
+        right: auto;
+        font-size: 11px;
+    }
+
+    .copyright {
+        font-size: 13px;
+    }
+}
+
+
+
+/* ====================
+   イベント情報・お知らせ
+   ==================== */
+.news {
+    padding: 70px 15%;
+    background-color: #f3f3f3;
+}
+/* タイトル */
+.news h2 {
+    margin: 0 0 35px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+}
+/* ====================
+   タブ
+   ==================== */
+.news-tabs {
+    display: flex;
+    width: fit-content;
+    margin: 0 auto 40px;
+    overflow: hidden;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+}
+/* タブ */
+.news-tab {
+    position: relative;
+    min-width: 120px;
+    height: 50px;
+    padding: 0 30px;
+    border: none;
+    background-color: white;
+    color: #222;
+    font-size: 16px;
+    cursor: pointer;
+}
+    .news-tab.active {
+        background-color: #1769aa;
+        color: white;
+    }
+    /* タブの境目 */
+    .news-tab + .news-tab {
+        border-left: 1px solid #ddd;
+    }
+    /* マウスを重ねたとき */
+    .news-tab:hover {
+        background-color: #1769aa;
+        color: white;
+    }
+/* ====================
+   お知らせ一覧
+   ==================== */
+.news-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+/* 1件のお知らせ */
+.news-item {
+    display: flex;
+    align-items: center;
+    min-height: 65px;
+    padding: 15px 10px;
+    border-bottom: 1px solid #ccc;
+}
+    /* 日付 */
+    .news-item time {
+        width: 120px;
+        color: #555;
+        font-size: 14px;
+    }
+/* カテゴリー */
+.news-category {
+    display: inline-block;
+    width: 90px;
+    margin-right: 25px;
+    padding: 5px 10px;
+    border: 1px solid #1769aa;
+    border-radius: 3px;
+    color: #1769aa;
+    font-size: 13px;
+    text-align: center;
+}
+/* お知らせのタイトル */
+.news-item a {
+    color: #222;
+    text-decoration: none;
+    font-size: 16px;
+}
+    /* お知らせにマウスを重ねたとき */
+    .news-item a:hover {
+        color: #1769aa;
+    }
+@media (max-width: 1164px) {  /*-----------------*/
+    .news h2 {
+        margin: 0 0 35px;
+        text-align: center;
+        font-size: 23px;
+        font-weight: bold;
+    }
+    .news-list {
+        width: calc(100vw - 20px);
+        margin-left: calc(50% - 50vw + 10px);
+        margin-right: 0;
+    }
+
+    .news-item {
+        display: grid;
+        grid-template-columns: 70px 60px 1fr;
+        column-gap: 10px;
+        padding: 14px 0;
+    }
+
+        .news-item time {
+            width: auto;
+            font-size: 13px;
+        }
+
+    .news-category {
+        width: auto;
+        margin-right: 0;
+        padding: 5px 5px;
+        font-size: 12px;
+    }
+
+    .news-item a {
+        min-width: 0;
+        font-size: 14px;
+        line-height: 1.6;
+    }
+}
+
+
+/* ====================
+   活動内容ページ(2ページ目)
+   ==================== */
+.activity-page {
+    display: flex;
+    align-items: flex-start;
+    background-color: #fff;
+}
+
+/* ====================
+   左側メニュー
+   ==================== */
+.activity-menu {
+    position: fixed;
+    top: 140px;
+    left: 0;
+    bottom: 0;
+    width: 220px;
+    min-width: 250px;
+    padding: 30px 20px;
+    background-color: #f3f3f3;
+    border-right: 1px solid #ddd;
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+    .activity-menu::-webkit-scrollbar {
+        display: none;
+    }
+        .activity-menu h2 {
+            margin: 0;
+            padding: 0 30px 25px;
+            font-size: 22px;
+        }
+        /* 左側のタブ */
+        .activity-menu nav {
+            display: flex;
+            flex-direction: column;
+        }
+
+            .activity-menu nav a {
+                position: relative;
+                padding: 13px 24px; /* 18→14、30→24 */
+                margin: 2px 10px; /* タブ同士に少し余白 */
+                color: #333;
+                text-decoration: none;
+                font-size: 17px;
+                border-radius: 6px;
+                transition: all 0.2s ease;
+
+            }
+                /* マウスを重ねたとき */
+                .activity-menu nav a:hover {
+                    background-color: #e5e5e5;
+                    color: #1769aa;
+                }
+                /* 青い線 */
+                .activity-menu nav a::after {
+                    content: "";
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 0;
+                    height: 3px;
+                    background-color: #1769aa;
+                    transition: width 0.3s ease;
+                }
+
+                .activity-menu nav a:hover::after {
+                    width: 100%;
+                }
+                /* 現在表示中 */
+                .activity-menu nav a.active {
+                    background-color: #1769aa;
+                    color: white;
+                }
+
+                    .activity-menu nav a.active::after {
+                        width: 100%;
+                    }
+        /* ====================
+   右側本文
+   ==================== */
+        .activity-content {
+            margin-left: 220px;
+            padding: 0 8%;
+        }
+        /* 各セクション */
+        .activity-section {
+            min-height: 500px;
+            padding: 90px 0;
+            border-bottom: 1px solid #ddd;
+            scroll-margin-top: 80px;
+        }
+            /* 見出し */
+            .activity-section h1 {
+                margin: 0 0 35px;
+                padding-left: 20px;
+                border-left: 6px solid #1769aa;
+                font-size: 30px;
+            }
+            /* 本文 */
+            .activity-section p {
+                max-width: 850px;
+                line-height: 2;
+                font-size: 16px;
+            }
+        /* ====================
+   主な活動
+   ==================== */
+        .activity-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .activity-card {
+            padding: 25px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+            .activity-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .activity-card h3 {
+                margin-top: 0;
+                font-size: 18px;
+            }
+        /* ====================
+   活動拠点
+   ==================== */
+        .location-box {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+            .location-box > div {
+                padding: 25px;
+                background-color: #f5f5f5;
+                border-radius: 8px;
+            }
+
+            .location-box h3 {
+                margin-top: 0;
+            }
+        /* ====================
+   年間スケジュール
+   ==================== */
+        .schedule-list {
+            max-width: 850px;
+        }
+
+            .schedule-list > div {
+                display: flex;
+                align-items: center;
+                min-height: 60px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            .schedule-list span {
+                width: 100px;
+                font-weight: bold;
+                color: #1769aa;
+            }
+
+            .schedule-list p {
+                margin: 0;
+            }
+        /* ====================
+   活動の様子
+   ==================== */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+            .gallery img {
+                display: block;
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+                border-radius: 8px;
+            }
+        /*====================
+ 機体紹介
+====================*/
+
+        .aircraft-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+            gap: 30px;
+        }
+
+        .aircraft-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,.08);
+            transition: .3s;
+        }
+
+            .aircraft-card:hover {
+                transform: translateY(-6px);
+                box-shadow: 0 12px 25px rgba(0,0,0,.15);
+            }
+
+            .aircraft-card img {
+                width: 100%;
+                height: 220px;
+                object-fit: cover;
+            }
+
+        .aircraft-body {
+            padding: 22px;
+        }
+
+            .aircraft-body h3 {
+                margin: 0 0 10px;
+            }
+
+        .aircraft-type {
+            display: inline-block;
+            padding: 4px 10px;
+            margin-bottom: 15px;
+            background: #1769aa;
+            color: white;
+            border-radius: 30px;
+            font-size: 13px;
+        }
+
+        .aircraft-body p {
+            line-height: 1.8;
+        }
+        /*以上2ページ目*/
+        /*以下3ページ目*/
+        /* ====================
+   メンバーページ
+   ==================== */
+        .member-page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 90px 60px 120px;
+        }
+        /* ====================
+   ページタイトル
+   ==================== */
+
+        .member-header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+
+        .member-subtitle {
+            margin: 0 0 10px;
+            color: #1769aa;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+
+        .member-header h1 {
+            margin: 0;
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+
+        .member-description {
+            margin-top: 20px;
+            color: #666;
+            font-size: 15px;
+        }
+/* ====================
+   メンバー一覧
+   ==================== */
+
+.member-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+
+/* ====================
+   1人分のカード
+   ==================== */
+
+.member-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    padding: 25px 15px;
+    background-color: #f5f6f7;
+    border-radius: 10px;
+    transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+
+    /* マウスを重ねたとき */
+
+    .member-row:hover {
+        background-color: #eef4f8;
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+
+/* ====================
+   役職
+   ==================== */
+
+.member-position {
+    width: auto;
+    margin-bottom: 15px;
+    padding: 5px 14px;
+    color: #1769aa;
+    background-color: white;
+    border: 1px solid #1769aa;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+
+/* ====================
+   メンバー情報
+   ==================== */
+
+.member-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* 学年 */
+
+.member-year {
+    width: auto;
+    margin-bottom: 5px;
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* 学科 */
+
+.member-department {
+    width: auto;
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 13px;
+}
+
+
+/* 氏名 */
+
+.member-name {
+    font-size: 24px;
+    font-weight: bold;
+}
+@media (max-width: 768px) {
+
+    .member-page {
+        padding: 70px 20px 100px;
+    }
+
+    .member-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .member-row {
+        min-height: 160px;
+    }
+}
+
+        /* ====================
+   ブログページ★
+   ==================== */
+        .blog-page {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 50px 120px;
+        }
+        /* ====================
+   ページタイトル
+   ==================== */
+
+        .blog-header {
+            margin-bottom: 70px;
+            text-align: center;
+        }
+
+        .blog-subtitle {
+            margin: 0 0 10px;
+            color: #1769aa;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        .blog-header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .blog-header p:last-child {
+            margin-top: 20px;
+            color: #666;
+        }
+        /* ====================
+   ブログ
+   ==================== */
+#blog-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 30px;
+}
+.blog-card {
+    cursor: pointer;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 18px rgba(0,0,0,.08);
+    transition: .3s;
+}
+
+    .blog-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0,0,0,.15);
+    }
+.blog-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+.blog-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.blog-date {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+.blog-title {
+    margin: 0 0 15px;
+    font-size: 24px;
+    line-height: 1.5;
+}
+.blog-summary {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+.read-more {
+    margin-top: auto;
+    text-align: right;
+    color: #1769aa;
+    font-size: 14px;
+    font-weight: bold;
+    transition: .3s;
+}
+.blog-card:hover .read-more {
+    color: #0c4f84;
+    transform: translateX(6px);
+}
+
+@media(max-width:768px) {
+
+    #blog-list {
+        grid-template-columns: 1fr;
+    }
+    
+}
+.blog-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+}
+
+    .blog-modal.show {
+        display: flex;
+    }
+.blog-modal-content {
+    width: min(900px,90%);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    position: relative;
+}
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
+}
+.modal-image {
+    width: 100%;
+    border-radius: 10px;
+    margin: 25px 0;
+}
+.modal-text {
+    line-height: 2;
+    white-space: pre-line;
+}
+
+
+        .blog-page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 50px 120px;
+        }
+        /* タイトル */
+
+        .blog-header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .blog-subtitle {
+            margin: 0 0 10px;
+            color: #1769aa;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        .blog-header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .blog-header > p:last-child {
+            margin-top: 20px;
+            color: #666;
+        }
+
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 50px 0;
+}
+
+    .pagination button {
+        width: 40px;
+        height: 40px;
+        border: none;
+        background: #eee;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: .2s;
+    }
+
+        .pagination button:hover {
+            background: #1769aa;
+            color: white;
+        }
+
+        .pagination button.active {
+            background: #1769aa;
+            color: white;
+        }
+
+        /* ====================
+   入会希望ページ
+   ==================== */
+        .join-page{
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 50px 120px;
+        }
+        /* ====================
+   ページタイトル
+   ==================== */
+
+.join-header{
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.join-subtitle{
+    margin: 0 0 10px;
+    color: #1769aa;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.join-header h1{
+    margin: 0;
+    font-size: 36px;
+}
+
+        .join-header > p:last-child {
+            margin-top: 20px;
+            color: #666;
+            line-height: 1.8;
+        }
+        /* ====================
+   セクション
+   ==================== */
+
+        .join-section {
+            margin-bottom: 80px;
+        }
+
+        .section-heading {
+            margin-bottom: 35px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            margin: 0 0 8px;
+            color: #1769aa;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .section-title {
+            margin: 0;
+            font-size: 27px;
+        }
+        /* ====================
+   メンバー募集中
+   ==================== */
+
+        .join-lead {
+            padding: 50px;
+            text-align: center;
+            background-color: #f3f5f7;
+            border-radius: 10px;
+        }
+
+        .join-label {
+            margin: 0 0 10px;
+            color: #1769aa;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .join-lead h2 {
+            margin: 0 0 20px;
+            font-size: 32px;
+        }
+
+        .join-lead p:last-child {
+            margin: -10px;
+            color: #444;
+            font-size: 17px;
+            line-height: 1.8;
+        }
+        /* ====================
+   こんな方におすすめ
+   ==================== */
+
+.join-points {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+        .join-point {
+            display: flex;
+            align-items: center;
+            padding: 22px 25px;
+            background-color: #f7f7f7;
+            border-radius: 7px;
+            transition: 0.2s;
+        }
+
+            .join-point:hover {
+                background-color: #eef4f8;
+            }
+
+        .join-number {
+            margin-right: 20px;
+            color: #1769aa;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .join-point p {
+            margin: 0;
+            font-size: 15px;
+        }
+
+@media (max-width: 768px) {
+
+    .join-points {
+        grid-template-columns: 1fr;
+    }
+}
+
+        /* ====================
+   見学・体験会
+   ==================== */
+
+        .visit-box {
+            padding: 50px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        .visit-label {
+            margin: 0 0 10px;
+            color: #1769aa;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 3px;
+        }
+
+        .visit-box h2 {
+            margin: 0 0 25px;
+            font-size: 27px;
+        }
+
+        .visit-box p {
+            margin: 0 auto 12px;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .visit-message {
+            margin-top: 25px !important;
+            font-weight: bold;
+        }
+        /* ====================
+   お問い合わせボタン
+   ==================== */
+
+        .join-contact-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 13px 30px;
+            color: white;
+            background-color: #1769aa;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s;
+        }
+
+            .join-contact-button:hover {
+                background-color: #3587c4;
+            }
+
+
+/* ミーティング参加ボタン：入会ページのボタンと同じサイズ感 */
+.meeting-page .meeting-join-title {
+    margin: 0 0 10px;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+    .meeting-page .meeting-join-title .join-contact-button {
+        margin-top: 0;
+        padding: 13px 30px;
+        line-height: 1.5;
+    }
+    .meeting-page .meeting-join-title + p {
+        margin: 20px 0 0;
+    }
+.meeting-page .join-lead {
+    padding-bottom: 30px;
+}
+
+/* ====================
+   スケジュール
+   ==================== */
+
+.schedule-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 80px 40px 100px;
+}
+
+.schedule-list {
+    border-top: 1px solid #ddd;
+}
+
+.schedule-item {
+    display: flex;
+    padding: 30px 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* 日付 */
+
+.schedule-date {
+    width: 150px;
+    flex-shrink: 0;
+    color: #1769aa;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+    .schedule-date span {
+        display: block;
+        margin-bottom: 5px;
+        color: #888;
+        font-size: 12px;
+    }
+
+/* 内容 */
+
+.schedule-content {
+    flex: 1;
+}
+
+.schedule-category {
+    display: inline-block;
+    margin-bottom: 8px;
+    padding: 4px 10px;
+    color: #1769aa;
+    background-color: #eef4f8;
+    font-size: 12px;
+    border-radius: 3px;
+}
+
+.schedule-content h3 {
+    margin: 0 0 10px;
+    font-size: 19px;
+}
+
+.schedule-content p {
+    margin: 0 0 8px;
+    color: #555;
+    line-height: 1.7;
+}
+
+.schedule-content .schedule-place {
+    margin-top: 12px;
+    color: #777;
+    font-size: 14px;
+}
+
+.schedule-title-row {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.schedule-meeting-button {
+    display: none;
+}
+
+/* ====================
+   スケジュール・スマホ
+   ==================== */
+
+@media (max-width: 768px) {
+
+    .schedule-section {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 60px 20px 80px;
+    }
+
+    .schedule-item {
+        padding: 25px 5px;
+    }
+
+    .schedule-date {
+        width: 110px;
+        font-size: 16px;
+    }
+
+    .schedule-content h3 {
+        font-size: 17px;
+    }
+
+    .schedule-title-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: nowrap;
+        gap: 10px;
+    }
+
+        .schedule-title-row .section-title {
+            width: auto;
+            margin: 0;
+            white-space: nowrap;
+            flex: 0 0 auto;
+        }
+
+    .schedule-meeting-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 38px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background-color: #1769aa;
+        color: #fff;
+        font-size: 15px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+        .schedule-meeting-button:hover {
+            background-color: #0f4f83;
+        }
+}
+
+
+        /* ====================
+   ページ下部
+   ==================== */
+
+        .join-bottom {
+            padding: 60px 30px;
+            text-align: center;
+            background-color: #f3f5f7;
+            border-radius: 10px;
+        }
+
+            .join-bottom h2 {
+                margin: 0 0 20px;
+                font-size: 28px;
+                line-height: 1.6;
+            }
+
+            .join-bottom p {
+                margin: 0;
+                color: #555;
+                line-height: 1.8;
+            }
+        /* ====================
+   よくある質問ページ
+   ==================== */
+        .faq-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 50px 120px;
+        }
+        /* ====================
+   ページタイトル
+   ==================== */
+
+        .faq-header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .faq-subtitle {
+            margin: 0 0 10px;
+            color: #1769aa;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        .faq-header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .faq-header > p:last-child {
+            margin-top: 20px;
+            color: #666;
+            line-height: 1.8;
+        }
+        /* ====================
+   Q&A
+   ==================== */
+
+        .faq-list {
+            border-top: 1px solid #ddd;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #ddd;
+        }
+            /* 質問 */
+
+            .faq-item summary {
+                display: flex;
+                align-items: center;
+                padding: 25px 10px;
+                cursor: pointer;
+                list-style: none;
+                font-size: 16px;
+                font-weight: bold;
+                transition: color 0.2s;
+            }
+                /* Chromeなどの標準矢印を消す */
+
+                .faq-item summary::-webkit-details-marker {
+                    display: none;
+                }
+        /* Q */
+
+        .faq-q {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            margin-right: 18px;
+            color: white;
+            background-color: #1769aa;
+            font-size: 14px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        /* マウスを重ねたとき */
+
+        .faq-item summary:hover {
+            color: #1769aa;
+        }
+        /* ====================
+   回答
+   ==================== */
+
+        .faq-answer {
+            display: flex;
+            padding: 0 40px 30px 60px;
+            color: #555;
+            line-height: 1.9;
+        }
+        /* A */
+
+        .faq-a {
+            margin-right: 15px;
+            color: #1769aa;
+            font-weight: bold;
+        }
+
+        .faq-answer p {
+            margin: 0;
+        }
+        /* ====================
+   お問い合わせ
+   ==================== */
+
+        .faq-contact {
+            margin-top: 70px;
+            padding: 45px 30px;
+            text-align: center;
+            background-color: #f3f5f7;
+            border-radius: 10px;
+        }
+
+            .faq-contact h2 {
+                margin: 0 0 15px;
+                font-size: 23px;
+            }
+
+            .faq-contact p {
+                margin: 0;
+                color: #555;
+                line-height: 1.8;
+            }
+
+            .faq-contact a {
+                display: inline-block;
+                margin-top: 25px;
+                padding: 12px 28px;
+                color: white;
+                background-color: #1769aa;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.2s;
+            }
+
+                .faq-contact a:hover {
+                    background-color: #3587c4;
+                }
+        /* ====================
+   お問い合わせページ
+   ==================== */
+        .contact-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 50px 120px;
+        }
+        /* ====================
+   ページタイトル
+   ==================== */
+
+        .contact-header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .contact-subtitle {
+            margin: 0 0 10px;
+            color: #1769aa;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        .contact-header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .contact-header > p:last-child {
+            max-width: 650px;
+            margin: 20px auto 0;
+            color: #666;
+            line-height: 1.8;
+        }
+        /* ====================
+   連絡先一覧
+   ==================== */
+
+        .contact-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        /* ====================
+   連絡先カード
+   ==================== */
+
+        .contact-card {
+            display: flex;
+            align-items: center;
+            min-height: 180px;
+            padding: 30px;
+            background-color: #f5f6f7;
+            border-radius: 10px;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+            .contact-card:hover {
+                background-color: #eef4f8;
+                transform: translateY(-3px);
+            }
+        /* ====================
+   アイコン
+   ==================== */
+
+        .contact-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 65px;
+            height: 65px;
+            margin-right: 22px;
+            flex-shrink: 0;
+            color: white;
+            background-color: #222;
+            font-size: 27px;
+            border-radius: 50%;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        /* メール */
+        .email-icon {
+            background-color: white !important;
+            border: 1px solid #ddd;
+        }
+        /* Instagram */
+        .instagram-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 65px;
+            height: 65px;
+            margin-right: 22px;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+            .instagram-logo img {
+                width: 55px;
+                height: 55px;
+                object-fit: contain;
+                transition: transform 0.2s;
+            }
+
+            .instagram-logo:hover img {
+                transform: scale(1.08);
+            }
+        /* YouTube */
+        .youtube-icon {
+            background-color: red;
+        }
+        /* SVGアイコン */
+        .contact-icon img {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+        }
+
+        .youtube-icon img {
+            width: 50px;
+            height: 50px;
+        }
+        /* ====================
+   文字
+   ==================== */
+        .contact-info h2 {
+            margin: 0 0 8px;
+            font-size: 20px;
+        }
+
+        .contact-info p {
+            margin: 0 0 12px;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        /* リンク */
+
+        .contact-info a {
+            color: #1769aa;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+            .contact-info a:hover {
+                text-decoration: underline;
+            }
+        /* ====================
+   注意書き
+   ==================== */
+
+        .contact-note {
+            margin-top: 40px;
+            text-align: center;
+            color: #777;
+            font-size: 13px;
+        }
+
+/* ====================
+   アクセス
+   ==================== */
+
+.contact-access {
+    margin-top: 70px;
+}
+
+    .contact-access h2 {
+        margin-bottom: 25px;
+        text-align: center;
+        font-size: 28px;
+    }
+
+.access-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.access-card {
+    padding: 30px;
+    background: #f5f6f7;
+    border-radius: 10px;
+}
+
+    .access-card h3 {
+        margin-top: 0;
+        margin-bottom: 15px;
+        color: #1769aa;
+    }
+
+    .access-card p {
+        margin: 0;
+        line-height: 1.8;
+        color: #555;
+    }
+@media (max-width:900px) {
+
+    .access-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+        /*試しに*/
+        /* ====================
+   サイト内検索
+   ==================== */
+
+        .search-page {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 50px 120px;
+        }
+        /* タイトル */
+
+        .search-header {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .search-subtitle {
+            margin: 0 0 10px;
+            color: #1769aa;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        .search-header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        /* 件数 */
+
+        #search-message {
+            margin-bottom: 25px;
+            color: #555;
+        }
+        /* 検索結果 */
+
+        .search-result {
+            padding: 25px 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+            .search-result:first-child {
+                border-top: 1px solid #ddd;
+            }
+        /* カテゴリー */
+
+        .search-category {
+            display: inline-block;
+            margin: 0 0 8px;
+            padding: 4px 10px;
+            background-color: #eef4f8;
+            color: #1769aa;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 3px;
+        }
+        /* タイトル */
+
+        .search-result h2 {
+            margin: 0 0 8px;
+            font-size: 21px;
+        }
+
+            .search-result h2 a {
+                color: #222;
+                text-decoration: none;
+            }
+
+                .search-result h2 a:hover {
+                    color: #1769aa;
+                }
+        /* 日付 */
+
+        .search-date {
+            margin: 0 0 10px;
+            color: #888;
+            font-size: 13px;
+        }
+        /* 本文 */
+
+        .search-text {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        /* 検索結果なし */
+
+        .no-result {
+            padding: 40px;
+            background-color: #f5f6f7;
+            text-align: center;
+            color: #666;
+        }
+        /* 検索キーワードの強調 */
+
+        .search-result mark {
+            padding: 1px 3px;
+            background-color: #dbeeff;
+            color: #1769aa;
+            font-weight: bold;
+        }
+        /* ====================
+   検索カテゴリー
+   ==================== */
+
+        #search-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .search-filter-button {
+            padding: 8px 18px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            background-color: white;
+            color: #333;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+            .search-filter-button:hover {
+                border-color: #1769aa;
+                color: #1769aa;
+            }
+
+            .search-filter-button.active {
+                border-color: #1769aa;
+                background-color: #1769aa;
+                color: white;
+            }
+        /* ====================
+   スマホ用メニュー
+   ==================== */
+        /* PCではスマホ用メニューを隠す */
+        .menu-button,
+        .mobile-menu {
+            display: none;
+        }
+        /* ====================---------------------------------------------
+   スマートフォン
+   ==================== */
+@media (max-width: 1164px) {
+
+    .site-logo {
+        width: auto;
+        height: 100px;
+    }
+
+        .site-logo a {
+            padding: 10px 15px;
+        }
+
+        .site-logo span {
+            font-size: 22px;
+            white-space: nowrap;
+        }
+
+    @media (max-width: 900px) {
+
+        /* 活動実績を1列にする */
+        .activity-list {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        /* 活動拠点を1列にする */
+        .location-box {
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+    }
+}
+
+
+        @media (max-width: 1164px) {
+
+            .header {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                display: flex;
+                height: 100px;
+                background-color: white;
+                border-bottom: 1px solid #ccc;
+                z-index: 9999;
+            }
+
+            body {
+                padding-top: 60px;
+            }
+
+            .hero-copy {
+                position: absolute;
+                top: 77%;
+                left: 8%;
+                transform: translateY(-50%);
+                z-index: 20;
+                color: white;
+                text-shadow: 0 3px 15px rgba(0,0,0,.45);
+            }
+        }
+
+        @media (max-width: 1164px) {
+            /* PC用メニューを隠す */
+            .header-right {
+                display: none;
+            }
+            /* ハンバーガーボタン */
+            .menu-button {
+                position: absolute;
+                top: 55px;
+                right: 10px;
+                transform: translateY(-50%);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                width: 50px;
+                height: 50px;
+                padding: 8px;
+                background-color: white;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                cursor: pointer;
+            }
+
+                .menu-button span {
+                    display: block;
+                    width: 100%;
+                    height: 4px;
+                    background-color: #222;
+                }
+            /* スマホ用メニュー */
+            .mobile-menu {
+                position: absolute;
+                top: 100px;
+                left: 10px;
+                right: 10px;
+                width: auto;
+                background-color: white;
+                border-radius: 15px;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+                overflow: hidden;
+                z-index: 100;
+            }
+                /* メニューを開いたとき */
+                .mobile-menu.open {
+                    display: block;
+                }
+
+                .mobile-menu a {
+                    display: block;
+                    align-items: center;
+                    padding: 18px 20px;
+                    color: #333;
+                    text-decoration: none;
+                    font-weight: 600;
+                    text-align: center;
+                    border-bottom: 1px solid #f0f0f0;
+                    transition: 0.3s;
+                }
+
+                    .mobile-menu a:last-child {
+                        border-bottom: none;
+                    }
+
+                    .mobile-menu a:hover {
+                        background-color: #eee;
+                        padding-left: 28px;
+                    }
+        }
+@media (max-width: 1164px) {
+    .site-logo-text small {
+        font-size: 18px;
+    }
+
+    .site-logo img {
+        display: block;
+        position: absolute;
+        left: 90px;
+        top: 17px;
+        width: 28px;
+        height: 28px;
+        margin: 0;
+        object-fit: contain;
+    }
+}
+
+/* メニューの文字を途中で改行しない */
+.faq-link,
+.upper-menu li,
+.main-menu a,
+.mobile-menu a {
+    white-space: nowrap;
+}
+
+/* PCヘッダーの右側は残り幅を使う */
+.header-right {
+    width: auto;
+    flex: 1;
+}
+
+
+@media (max-width: 768px) {
+
+    .news-tabs {
+        width: calc(100% - 20px);
+        max-width: 400px;
+        margin: 0 auto 25px;
+        border-radius: 30px;
+    }
+
+    .news-tab {
+        flex: 1 1 0;
+        min-width: 0;
+        width: 33.333%;
+        height: 42px;
+        padding: 0 5px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+}
+        /* ====================
+   活動内容：スマホ用
+   ==================== */
+@media (max-width:1164px) {
+
+    .activity-page {
+        display: block;
+    }
+}
+        @media (max-width: 1164px) {
+            /* 左側メニューを固定解除 */
+            .activity-menu {
+                top: 100px;
+                position: sticky;
+                width: 100%;
+                box-sizing: border-box;
+                background-color: #f5f6f7;
+                padding: 10px 0;
+                margin: 0 0 20px;
+                z-index: 100;
+                min-width: 0;
+                border-right: none;
+            }
+                /* 「活動内容」の見出しは非表示 */
+                .activity-menu h2 {
+                    display: none;
+                }
+                /* タブを横並びにする */
+                .activity-menu nav {
+                    flex-direction: row;
+                    display: flex;
+                    flex-wrap: nowrap;
+                    gap: 8px;
+                    overflow-x: auto;
+                    padding: 0 15px;
+                    scrollbar-width: none;
+                    -webkit-overflow-scrolling: touch;
+                }
+                    /* Chromeなどでスクロールバーを非表示 */
+                    .activity-menu nav::-webkit-scrollbar {
+                        display: none;
+                    }
+                    /* タブ */
+                    .activity-menu nav a {
+                        flex: 0 0 auto;
+                        padding: 10px 16px;
+                        margin: 0;
+                        color: #333;
+                        background-color: #fff;
+                        border: 1px solid #ddd;
+                        border-radius: 999px;
+                        font-size: 13px;
+                        white-space: nowrap;
+                        text-decoration: none;
+                    }
+                        .activity-menu nav a::after {
+                            display: none;
+                        }
+                        /* タブを押したとき */
+                        .activity-menu nav a:hover {
+                            background-color: #eee;
+                        }
+            /* 本文 */
+            .activity-content {
+                width: 100%;
+                margin-left: 0;
+                padding: 20px 15px;
+                box-sizing: border-box;
+            }
+            .activity-section {
+                scroll-margin-top: 90px;
+            }
+        }
+        /* スマホ用お問い合わせ */
+
+        .mobile-header-contact {
+            display: none;
+        }
+
+
+        @media (max-width: 1164px) {
+
+            .mobile-header-contact {
+                display: block;
+                position: absolute;
+                top: 55px;
+                right: 68px;
+                transform: translateY(-50%);
+            }
+
+                .mobile-header-contact a {
+                    display: block;
+                    padding: 8px 14px;
+                    background-color: #e8c94a;
+                    color: #222;
+                    border-radius: 5px;
+                    font-size: 14px;
+                    font-weight: bold;
+                    text-decoration: none;
+                }
+
+                    .mobile-header-contact a:hover {
+                        background-color: #f3e5a0;
+                    }
+        }
+
+            /* ====================
+       お問い合わせ
+       ==================== */
+@media (max-width: 768px) {
+    .contact-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .contact-card {
+        min-height: 150px;
+        padding: 20px;
+    }
+
+    .contact-icon {
+        width: 60px;
+        height: 60px;
+        margin-right: 18px;
+    }
+
+        .contact-icon img {
+            width: 35px;
+            height: 35px;
+        }
+}
+
+        /* ====================
+プライバシーポリシー
+==================== */
+
+        .privacy-page {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 80px 40px 120px;
+        }
+        /* ====================
+ページタイトル
+==================== */
+
+        .privacy-header {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .privacy-subtitle {
+            margin: 0 0 10px;
+            color: #1769aa;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 4px;
+        }
+
+        .privacy-header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .privacy-header > p:last-child {
+            max-width: 700px;
+            margin: 25px auto 0;
+            color: #666;
+            font-size: 14px;
+            line-height: 2;
+            text-align: left;
+        }
+        /* ====================
+各項目
+==================== */
+
+        .privacy-section {
+            margin-bottom: 50px;
+        }
+
+            .privacy-section h2 {
+                margin: 0 0 20px;
+                padding-left: 15px;
+                border-left: 5px solid #1769aa;
+                font-size: 22px;
+            }
+
+            .privacy-section p {
+                margin: 0 0 15px;
+                color: #444;
+                font-size: 15px;
+                line-height: 2;
+            }
+            /* ====================
+リスト
+==================== */
+
+            .privacy-section ul {
+                margin: 20px 0;
+                padding: 20px 30px;
+                background-color: #f5f6f7;
+                border-radius: 8px;
+            }
+
+            .privacy-section li {
+                margin: 8px 0;
+                color: #444;
+                font-size: 14px;
+                line-height: 1.8;
+            }
+        /* ====================
+最後の署名
+==================== */
+
+        .privacy-footer {
+            margin-top: 70px;
+            padding-top: 25px;
+            border-top: 1px solid #ddd;
+            color: #777;
+            font-size: 13px;
+            text-align: right;
+        }
+
+            .privacy-footer p {
+                margin: 5px 0;
+            }
+        /* ====================
+スマートフォン
+==================== */
+
+        @media (max-width: 768px) {
+            .privacy-page {
+                padding: 50px 20px 80px;
+            }
+
+            .privacy-header {
+                margin-bottom: 45px;
+            }
+
+                .privacy-header h1 {
+                    font-size: 28px;
+                }
+
+                .privacy-header > p:last-child {
+                    font-size: 13px;
+                    line-height: 1.9;
+                }
+
+            .privacy-section {
+                margin-bottom: 40px;
+            }
+
+                .privacy-section h2 {
+                    font-size: 19px;
+                }
+
+                .privacy-section p {
+                    font-size: 14px;
+                    line-height: 1.9;
+                }
+
+                .privacy-section ul {
+                    padding: 15px 25px;
+                }
+
+                .privacy-section li {
+                    font-size: 13px;
+                }
+
+            .privacy-footer {
+                margin-top: 50px;
+            }
+        }
+
+/*====================
+404ページ
+====================*/
+
+.error-page {
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    background: linear-gradient( #6ec8ff, #bfe9ff );
+    position: relative;
+    font-family: sans-serif;
+}
+
+/*--------------------
+中央
+--------------------*/
+
+.error-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    z-index: 10;
+}
+
+    .error-content h1 {
+        margin: 0;
+        font-size: 150px;
+        color: white;
+    }
+
+    .error-content h2 {
+        margin: 0;
+        font-size: 40px;
+        color: #003366;
+    }
+
+    .error-content p {
+        margin: 30px 0;
+        font-size: 18px;
+        color: #333;
+        line-height: 1.8;
+    }
+.home-button {
+    display: inline-block;
+    padding: 18px 45px;
+    background: #1769aa;
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+    .home-button:hover {
+        transform: translateY(-3px);
+        background: #0c4f84;
+    }
+
+
+@keyframes fly {
+
+    0% {
+        left: -220px;
+        top: 140px;
+        transform: rotate(6deg);
+    }
+
+    30% {
+        top: 100px;
+    }
+
+    60% {
+        top: 150px;
+    }
+
+    100% {
+        left: 110%;
+        top: 110px;
+        transform: rotate(-4deg);
+    }
+}
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 100px;
+    opacity: .9;
+}
+
+    .cloud::before,
+    .cloud::after {
+        content: "";
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+    }
+
+.cloud1 {
+    width: 170px;
+    height: 55px;
+    top: 100px;
+    left: -250px;
+    animation: cloudMove 45s linear infinite;
+}
+
+    .cloud1::before {
+        width: 70px;
+        height: 70px;
+        left: 20px;
+        top: -30px;
+    }
+
+    .cloud1::after {
+        width: 90px;
+        height: 90px;
+        left: 70px;
+        top: -40px;
+    }
+
+.cloud2 {
+    width: 220px;
+    height: 65px;
+    top: 280px;
+    left: -300px;
+    animation: cloudMove 60s linear infinite;
+}
+
+.cloud3 {
+    width: 150px;
+    height: 45px;
+    top: 480px;
+    left: -200px;
+    animation: cloudMove 55s linear infinite;
+}
+
+@keyframes cloudMove {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(1800px);
+    }
+}
+
+/* =====================================================--
+   体験会ページ
+   ==================== */
+
+.trial-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+}
+
+/* メインビジュアル */
+
+.trial-hero {
+    text-align: center;
+    padding: 55px 30px;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg,#1769aa,#4fa7e6);
+    color: white;
+    border-radius: 15px;
+    transform: translateY(-45px);
+}
+
+    .trial-hero h1 {
+        margin: 0 0 20px;
+        font-size: 48px;
+    }
+
+    .trial-hero p {
+        font-size: 20px;
+        line-height: 1.8;
+        margin-bottom: 35px;
+    }
+
+.trial-entry-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.trial-entry-button {
+    display: inline-block;
+    min-width: 280px;
+    padding: 15px 35px;
+    background: white;
+    color: #1769aa;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: .3s;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+    .trial-entry-button:hover {
+        background: #f2f2f2;
+        transform: translateY(-3px);
+    }
+
+/* 各セクション */
+
+.trial-section {
+    margin-bottom: 70px;
+}
+
+    .trial-section h2 {
+        margin-bottom: 30px;
+        padding-left: 15px;
+        border-left: 6px solid #1769aa;
+        font-size: 30px;
+    }
+
+/* カード */
+
+.trial-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 25px;
+}
+
+.trial-card {
+    padding: 30px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    transition: .3s;
+}
+
+    .trial-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,.1);
+    }
+
+    .trial-card h3 {
+        margin-top: 0;
+        color: #1769aa;
+    }
+
+    .trial-card p {
+        margin-bottom: 0;
+        line-height: 1.8;
+    }
+
+/* 持ち物 */
+
+.trial-list {
+    padding-left: 25px;
+    line-height: 2;
+}
+/* ====================
+   体験会ページ（スマホ）
+   ==================== */
+
+@media(max-width:1164px) {
+
+    .trial-page {
+        padding: 90px 20px 70px;
+    }
+
+    .trial-hero {
+        padding: 60px 20px;
+        margin-bottom: 15px;
+    }
+
+        .trial-hero h1 {
+            font-size: 34px;
+        }
+
+        .trial-hero p {
+            font-size: 16px;
+        }
+
+    .trial-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trial-section h2 {
+        font-size: 24px;
+    }
+}

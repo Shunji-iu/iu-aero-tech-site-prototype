@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="robots" content="noindex, nofollow"> <!--後で消す！！-->
+
+    <title>検索 | 航空技術研究会</title>
+    <meta name="description" content="茨城大学航空技術研究会ウェブサイト内を検索します。">
+    <meta name="robots" content="noindex, follow">
+    <meta property="og:title" content="検索 | 航空技術研究会">
+    <meta property="og:description" content="航空技術研究会ウェブサイト内を検索します。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/top1-pc.webp">
+    <meta property="og:site_name" content="茨城大学 航空技術研究会">
+    <link rel="icon" href="images/logo.png">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <!-- 共通ヘッダー -->
+    <div id="header"></div>
+
+
+    <main class="search-page">
+
+        <div class="search-header">
+
+            <p class="search-subtitle">
+                SEARCH
+            </p>
+
+            <h1>サイト内検索</h1>
+
+        </div>
+
+
+        <div class="search-result-area">
+
+            <p id="search-message"></p>
+
+            <div id="search-filter">
+
+                <button class="search-filter-button active"
+                        data-category="all">
+                    すべて
+                </button>
+
+                <button class="search-filter-button"
+                        data-category="活動内容">
+                    活動内容
+                </button>
+
+                <button class="search-filter-button"
+                        data-category="ブログ">
+                    ブログ
+                </button>
+
+                <button class="search-filter-button"
+                        data-category="FAQ">
+                    FAQ
+                </button>
+
+                <button class="search-filter-button"
+                        data-category="入会案内">
+                    入会案内
+                </button>
+
+            </div>
+
+            <div id="search-results"></div>
+
+        </div>
+
+    </main>
+
+
+    <!-- 共通フッター -->
+    <div id="footer"></div>
+
+
+    <script src="search-data.js"></script>
+    <script src="common.js"></script>
+    <script src="search.js"></script>
+
+</body>
+
+</html>
