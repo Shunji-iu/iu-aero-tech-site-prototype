@@ -1,16 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import blogData from "../data/blog-data.json";
+import { getCollection } from "astro:content";
 import scheduleData from "../data/schedule-data.json";
 
-const blogs = [...blogData].sort((a, b) =>
-    Number.parseInt(b.id.replace("blog", "")) - Number.parseInt(a.id.replace("blog", ""))
+const blogs = (await getCollection("blog")).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 const latestBlog = blogs[0];
-const latestBlogDate = latestBlog?.date
-    .replace("年", "-")
-    .replace("月", "-")
-    .replace("日", "");
+const latestBlogDate = latestBlog?.data.date.toISOString().slice(0, 10);
+const latestBlogDisplayDate = latestBlogDate?.replace(/-/g, ".");
 ---
 
 <BaseLayout title={"茨城大学 航空技術研究会"} description={"茨城大学航空技術研究会の公式サイトです。飛行機やドローンの設計・製作、飛行活動、地域イベントへの参加などを紹介しています。"} ogTitle={"茨城大学 航空技術研究会"} ogDescription={"ものづくりを、空へ。茨城大学航空技術研究会の活動やイベントを紹介します。"}>
@@ -118,11 +116,11 @@ const latestBlogDate = latestBlog?.date
                     <a href="trial.html">11/07(土)にこうがく祭が開催されます！(日立キャンパス)</a>
                 </article>
 
-                {latestBlog && latestBlogDate && (
+                {latestBlog && latestBlogDate && latestBlogDisplayDate && (
                     <article class="news-item" data-category="blog">
-                        <time datetime={latestBlogDate}>{latestBlogDate.replace(/-/g, ".")}</time>
+                        <time datetime={latestBlogDate}>{latestBlogDisplayDate}</time>
                         <span class="news-category">ブログ</span>
-                        <a href="blog.html">活動ブログ「{latestBlog.title}」を更新しました</a>
+                        <a href="blog.html">活動ブログ「{latestBlog.data.title}」を更新しました</a>
                     </article>
                 )}
 

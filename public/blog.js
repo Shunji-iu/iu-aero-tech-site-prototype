@@ -10,13 +10,23 @@ function openBlog(card) {
         return;
     }
 
-    const { date, title, image, text } = card.dataset;
-    body.innerHTML = `
-        <p class="blog-date">${date}</p>
-        <h1>${title}</h1>
-        <img src="${image}" alt="${title}" class="modal-image" loading="lazy" decoding="async">
-        <div class="modal-text">${text}</div>
-    `;
+    const content = document.getElementById(`blog-content-${card.id}`);
+    const title = card.querySelector(".blog-title")?.textContent;
+    const date = card.querySelector(".blog-date")?.textContent;
+    const image = card.querySelector(".blog-image");
+    if (!content || !title || !date || !(image instanceof HTMLImageElement)) {
+        throw new Error(`ブログ記事の表示データが不足しています: ${card.id}`);
+    }
+
+    const heading = document.createElement("h1");
+    heading.textContent = title;
+    const dateElement = document.createElement("p");
+    dateElement.className = "blog-date";
+    dateElement.textContent = date;
+    const modalImage = image.cloneNode();
+    modalImage.className = "modal-image";
+
+    body.replaceChildren(dateElement, heading, modalImage, content.content.cloneNode(true));
     modal.classList.add("show");
 }
 

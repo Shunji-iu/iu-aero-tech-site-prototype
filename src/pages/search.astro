@@ -1,6 +1,18 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import blogData from "../data/blog-data.json";
+import { getCollection } from "astro:content";
+
+const blogData = (await getCollection("blog")).map((blog) => ({
+    id: blog.id,
+    title: blog.data.title,
+    date: blog.data.date.toLocaleDateString("ja-JP", {
+        year: "numeric",
+        month: "long",
+        day: "2-digit",
+        timeZone: "UTC"
+    }),
+    text: `${blog.data.summary} ${blog.body}`
+}));
 ---
 
 <BaseLayout title={"検索 | 航空技術研究会"} description={"茨城大学航空技術研究会ウェブサイト内を検索します。"} ogTitle={"検索 | 航空技術研究会"} ogDescription={"航空技術研究会ウェブサイト内を検索します。"} robots={"noindex, follow"}>

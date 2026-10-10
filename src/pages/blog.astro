@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import blogData from "../data/blog-data.json";
+import { getCollection, render } from "astro:content";
 
-const blogs = [...blogData].sort((a, b) =>
-  Number.parseInt(b.id.replace("blog", "")) - Number.parseInt(a.id.replace("blog", ""))
+const blogs = (await getCollection("blog")).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
 );
 ---
 
@@ -32,24 +32,33 @@ const blogs = [...blogData].sort((a, b) =>
         </div>
 
         <div id="blog-list">
-            {blogs.map((blog) => (
+            {blogs.map(async (blog) => {
+                const { Content } = await render(blog);
+                const date = blog.data.date.toLocaleDateString("ja-JP", {
+                    year: "numeric",
+                    month: "long",
+                    day: "2-digit",
+                    timeZone: "UTC"
+                });
+
+                return (
                 <article
                     class="blog-card"
                     id={blog.id}
-                    data-date={blog.date}
-                    data-title={blog.title}
-                    data-image={blog.image}
-                    data-text={blog.text}
                 >
-                    <img src={blog.image} alt={blog.title} class="blog-image" loading="lazy" decoding="async">
+                    <img src={blog.data.image} alt={blog.data.title} class="blog-image" loading="lazy" decoding="async">
                     <div class="blog-body">
-                        <p class="blog-date">{blog.date}</p>
-                        <h2 class="blog-title">{blog.title}</h2>
-                        <p class="blog-summary">{blog.summary}</p>
+                        <p class="blog-date">{date}</p>
+                        <h2 class="blog-title">{blog.data.title}</h2>
+                        <p class="blog-summary">{blog.data.summary}</p>
                         <p class="read-more">タップして続きを読む →</p>
                     </div>
+                    <template id={`blog-content-${blog.id}`}>
+                        <div class="modal-text"><Content /></div>
+                    </template>
                 </article>
-            ))}
+                );
+            })}
         </div>
 
         <div id="pagination" class="pagination"></div>
