@@ -1,22 +1,9 @@
-<!DOCTYPE html>
-<html lang="ja">
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>活動内容 | 航空技術研究会</title>
-    <meta name="description" content="茨城大学航空技術研究会の活動内容を紹介します。機体の設計・製作、飛行練習、ドローン教室、地域イベントへの参加などを行っています。">
-    <meta property="og:title" content="活動内容 | 航空技術研究会">
-    <meta property="og:description" content="航空技術研究会の機体製作、飛行活動、ドローン教室などの活動を紹介します。">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="images/top1-pc.webp">
-    <meta property="og:site_name" content="茨城大学 航空技術研究会">
-    <link rel="icon" href="images/logo.png">
-    <link rel="stylesheet" href="style.css">
-</head>
+<BaseLayout title={"活動内容 | 航空技術研究会"} description={"茨城大学航空技術研究会の活動内容を紹介します。機体の設計・製作、飛行練習、ドローン教室、地域イベントへの参加などを行っています。"} ogTitle={"活動内容 | 航空技術研究会"} ogDescription={"航空技術研究会の機体製作、飛行活動、ドローン教室などの活動を紹介します。"}>
 
-<body>
-    <div id="header"></div>
     <!-- ====================
          活動内容ページ
          ==================== -->
@@ -361,8 +348,7 @@
             </section>
         </div>
     </main>
-    <div id="footer"></div>
-    <script src="common.js"></script>
-    <script src="activity.js"></script>
-</body>
-</html>
+    
+    
+    <script is:inline src="activity.js"></script>
+</BaseLayout>

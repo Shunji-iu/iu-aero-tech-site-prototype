@@ -48,30 +48,17 @@ let searchData = [
 // ブログを検索データに追加
 // ====================
 
-fetch("blog-data.json")
-    .then(response => response.json())
-    .then(blogs => {
+const blogDataElement = document.getElementById("blog-data");
+if (!blogDataElement) {
+    throw new Error("ブログ検索データが見つかりません。");
+}
 
-        blogs.forEach(function (blog) {
-
-            searchData.push({
-
-                title: blog.title,
-
-                category: "ブログ",
-
-                date: blog.date,
-
-                text: blog.text,
-
-                url: `blog.html#${blog.id}`
-
-            });
-
-        });
-
-
-        // ブログ追加後に検索を実行
-        searchSite();
-
+JSON.parse(blogDataElement.textContent).forEach(function (blog) {
+    searchData.push({
+        title: blog.title,
+        category: "ブログ",
+        date: blog.date,
+        text: blog.text,
+        url: `blog.html#${blog.id}`
     });
+});

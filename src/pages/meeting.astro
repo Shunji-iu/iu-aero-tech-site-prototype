@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ミーティング | 航空技術研究会</title>
-    <meta name="description" content="茨城大学航空技術研究会のミーティングについて紹介します。活動方針や予定を確認できます。">
-    <meta property="og:title" content="ミーティング | 航空技術研究会">
-    <meta property="og:description" content="航空技術研究会のミーティングや活動方針について紹介します。">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="images/top1-pc.webp">
-    <meta property="og:site_name" content="茨城大学 航空技術研究会">
-    <link rel="icon" href="images/logo.png">
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-    <!-- 共通ヘッダー -->
-    <div id="header"></div>
+<BaseLayout title={"ミーティング | 航空技術研究会"} description={"茨城大学航空技術研究会のミーティングについて紹介します。活動方針や予定を確認できます。"} ogTitle={"ミーティング | 航空技術研究会"} ogDescription={"航空技術研究会のミーティングや活動方針について紹介します。"}>
+<!-- 共通ヘッダー -->
+    
 
 
     <main class="join-page meeting-page">
@@ -68,9 +54,6 @@
     </main>
 
     <!-- 共通フッター -->
-    <div id="footer"></div>
-    <script src="common.js"></script>
-
-</body>
-
-</html>
+    
+    
+</BaseLayout>

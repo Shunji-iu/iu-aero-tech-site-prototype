@@ -1,24 +1,11 @@
-<!DOCTYPE html>
-<html lang="ja">
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import scheduleData from "../data/schedule-data.json";
+---
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>入会希望の方へ | 航空技術研究会</title>
-    <meta name="description" content="茨城大学航空技術研究会への入会を希望する方へ向けて、活動内容や参加方法をご案内します。">
-    <meta property="og:title" content="入会希望の方へ | 航空技術研究会">
-    <meta property="og:description" content="航空技術、ものづくり、飛行機やドローンに興味がある方へ、入会方法をご案内します。">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="images/top1-pc.webp">
-    <meta property="og:site_name" content="茨城大学 航空技術研究会">
-    <link rel="icon" href="images/logo.png">
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-    <!-- 共通ヘッダー -->
-    <div id="header"></div>
+<BaseLayout title={"入会希望の方へ | 航空技術研究会"} description={"茨城大学航空技術研究会への入会を希望する方へ向けて、活動内容や参加方法をご案内します。"} ogTitle={"入会希望の方へ | 航空技術研究会"} ogDescription={"航空技術、ものづくり、飛行機やドローンに興味がある方へ、入会方法をご案内します。"}>
+<!-- 共通ヘッダー -->
+    
 
 
     <main class="join-page">
@@ -163,9 +150,20 @@
 
 
             <div class="schedule-list" id="schedule-list">
-
-                
-
+                {scheduleData.map((item) => (
+                    <div class="schedule-item">
+                        <div class="schedule-date">
+                            <span>{item.year}</span>
+                            {item.date}
+                        </div>
+                        <div class="schedule-content">
+                            <span class="schedule-category">{item.category}</span>
+                            <h3>{item.title}</h3>
+                            <p>{item.description}</p>
+                            <p class="schedule-place">📍 {item.place}</p>
+                        </div>
+                    </div>
+                ))}
             </div>
 
         </section>
@@ -193,10 +191,6 @@
     </main>
 
     <!-- 共通フッター -->
-    <div id="footer"></div>
-    <script src="common.js"></script>
-    <script src="schedule.js"></script>
-
-</body>
-
-</html>
+    
+    
+</BaseLayout>

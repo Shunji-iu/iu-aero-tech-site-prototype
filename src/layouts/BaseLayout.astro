@@ -1,0 +1,44 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  robots?: string;
+}
+
+const {
+  title,
+  description,
+  ogTitle = title,
+  ogDescription = description,
+  robots
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {robots && <meta name="robots" content={robots} />}
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="images/top1-pc.webp" />
+    <meta property="og:site_name" content="茨城大学 航空技術研究会" />
+    <link rel="icon" href="images/logo.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+    <script is:inline src="common.js"></script>
+  </body>
+</html>

@@ -1,0 +1,176 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import blogData from "../data/blog-data.json";
+import scheduleData from "../data/schedule-data.json";
+
+const blogs = [...blogData].sort((a, b) =>
+    Number.parseInt(b.id.replace("blog", "")) - Number.parseInt(a.id.replace("blog", ""))
+);
+const latestBlog = blogs[0];
+const latestBlogDate = latestBlog?.date
+    .replace("年", "-")
+    .replace("月", "-")
+    .replace("日", "");
+---
+
+<BaseLayout title={"茨城大学 航空技術研究会"} description={"茨城大学航空技術研究会の公式サイトです。飛行機やドローンの設計・製作、飛行活動、地域イベントへの参加などを紹介しています。"} ogTitle={"茨城大学 航空技術研究会"} ogDescription={"ものづくりを、空へ。茨城大学航空技術研究会の活動やイベントを紹介します。"}>
+
+    <!-- メインビジュアル -->
+    <main>
+        <section class="main-visual">
+
+            <div class="slideshow">
+
+                <!-- キャッチコピー -->
+                <div class="hero-copy">
+
+                    <p class="hero-subtitle">
+                        航空技術研究会
+                    </p>
+
+                    <h1 class="hero-title">
+                        ものづくりを、<br>
+                        空へ。
+                    </h1>
+
+                </div>
+
+                <!-- 1枚目 -->
+                <picture class="slide active">
+
+                    <source media="(max-width:1164px)"
+                            srcset="images/top1-sp.webp">
+
+                    <img src="images/top1-pc.webp"
+                        alt="トップ画像1"
+                        fetchpriority="high"
+                        decoding="async">
+
+                </picture>
+
+                <!-- 2枚目 -->
+                <picture class="slide">
+
+                    <source media="(max-width:1164px)"
+                            srcset="images/top2-sp.webp">
+
+                    <img src="images/top2-pc.webp"
+                        alt="トップ画像2"
+                        loading="lazy"
+                        decoding="async">
+
+                </picture>
+
+                <!-- 3枚目 -->
+                <picture class="slide">
+
+                    <source media="(max-width:1164px)"
+                            srcset="images/top3-sp.webp">
+
+                    <img src="images/top3-pc.webp"
+                        alt="トップ画像3"
+                        loading="lazy"
+                        decoding="async">
+
+                </picture>
+
+            </div>
+
+            <!-- 左右ボタン -->
+            <button class="prev">&#10094;</button>
+            <button class="next">&#10095;</button>
+
+            <!-- 一時停止 -->
+            <button class="pause-button">❚❚</button>
+
+            <!-- ドット -->
+            <div class="dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+
+        </section>
+
+        <!-- イベント情報・お知らせ -->
+        <section class="news">
+            <h2>イベント情報・お知らせ</h2>
+            <!-- カテゴリータブ -->
+            <div class="news-tabs">
+                <button class="news-tab active" data-category="all">すべて</button>
+                <button class="news-tab" data-category="event">イベント</button>
+                <button class="news-tab" data-category="blog">ブログ</button>
+            </div>
+            <!-- お知らせ一覧 -->
+            <div class="news-list" id="news-list">
+
+                <!--更新時ここを変更■■■---------------------------------------------------->
+
+                <article class="news-item" data-category="event">
+                    <time datetime="2026-11-17">2026.10.03</time>
+                    <span class="news-category">イベント</span>
+                    <a href="trial.html">11/14(土)-11/15(日)に茨苑祭が開催されます！(水戸キャンパス)</a>
+                </article>
+
+                <article class="news-item" data-category="event">
+                    <time datetime="2026-11-14">2026.10.02</time>
+                    <span class="news-category">イベント</span>
+                    <a href="trial.html">11/07(土)にこうがく祭が開催されます！(日立キャンパス)</a>
+                </article>
+
+                {latestBlog && latestBlogDate && (
+                    <article class="news-item" data-category="blog">
+                        <time datetime={latestBlogDate}>{latestBlogDate.replace(/-/g, ".")}</time>
+                        <span class="news-category">ブログ</span>
+                        <a href="blog.html">活動ブログ「{latestBlog.title}」を更新しました</a>
+                    </article>
+                )}
+
+            </div>
+        </section>
+        <!----------------------------------------------------------------------------------->
+        <!-- ====================
+             活動スケジュール
+             ==================== -->
+
+        <section id="schedule" class="schedule-section">
+
+            <div class="section-heading">
+                <p class="section-subtitle">
+                    SCHEDULE
+                </p>
+
+                <div class="schedule-title-row">
+                    <h2 class="section-title">
+                        活動予定表
+                    </h2>
+                    <a href="meeting.html"
+                       class="schedule-meeting-button"
+                       aria-label="ミーティング詳細">
+                        M
+                    </a>
+                </div>
+            </div>
+                <div class="schedule-list" id="schedule-list">
+                    {scheduleData.map((item) => (
+                        <div class="schedule-item">
+                            <div class="schedule-date">
+                                <span>{item.year}</span>
+                                {item.date}
+                            </div>
+                            <div class="schedule-content">
+                                <span class="schedule-category">{item.category}</span>
+                                <h3>{item.title}</h3>
+                                <p>{item.description}</p>
+                                <p class="schedule-place">📍 {item.place}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+</section>
+
+    </main>
+    
+    
+    <script is:inline src="home.js"></script>
+</BaseLayout>

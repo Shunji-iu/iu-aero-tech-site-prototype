@@ -1,27 +1,11 @@
-<!DOCTYPE html>
-<html lang="ja">
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import blogData from "../data/blog-data.json";
+---
 
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>検索 | 航空技術研究会</title>
-    <meta name="description" content="茨城大学航空技術研究会ウェブサイト内を検索します。">
-    <meta name="robots" content="noindex, follow">
-    <meta property="og:title" content="検索 | 航空技術研究会">
-    <meta property="og:description" content="航空技術研究会ウェブサイト内を検索します。">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="images/top1-pc.webp">
-    <meta property="og:site_name" content="茨城大学 航空技術研究会">
-    <link rel="icon" href="images/logo.png">
-    <link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-
-    <!-- 共通ヘッダー -->
-    <div id="header"></div>
+<BaseLayout title={"検索 | 航空技術研究会"} description={"茨城大学航空技術研究会ウェブサイト内を検索します。"} ogTitle={"検索 | 航空技術研究会"} ogDescription={"航空技術研究会ウェブサイト内を検索します。"} robots={"noindex, follow"}>
+<!-- 共通ヘッダー -->
+    
 
 
     <main class="search-page">
@@ -78,13 +62,16 @@
 
 
     <!-- 共通フッター -->
-    <div id="footer"></div>
+    
 
 
-    <script src="search-data.js"></script>
-    <script src="common.js"></script>
-    <script src="search.js"></script>
-
-</body>
-
-</html>
+    <script
+        is:inline
+        type="application/json"
+        id="blog-data"
+        set:html={JSON.stringify(blogData).replace(/</g, "\\u003c")}
+    ></script>
+    <script is:inline src="search-data.js"></script>
+    
+    <script is:inline src="search.js"></script>
+</BaseLayout>

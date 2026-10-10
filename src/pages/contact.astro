@@ -1,24 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>お問い合わせ | 航空技術研究会</title>
-    <meta name="description" content="茨城大学航空技術研究会へのお問い合わせ方法をご案内します。活動見学や入会に関するご質問を受け付けています。">
-    <meta property="og:title" content="お問い合わせ | 航空技術研究会">
-    <meta property="og:description" content="活動見学や入会など、航空技術研究会へのお問い合わせ方法をご案内します。">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="images/top1-pc.webp">
-    <meta property="og:site_name" content="茨城大学 航空技術研究会">
-    <link rel="icon" href="images/logo.png">
-    <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-    <!-- 共通ヘッダー -->
-    <div id="header"></div>
+<BaseLayout title={"お問い合わせ | 航空技術研究会"} description={"茨城大学航空技術研究会へのお問い合わせ方法をご案内します。活動見学や入会に関するご質問を受け付けています。"} ogTitle={"お問い合わせ | 航空技術研究会"} ogDescription={"活動見学や入会など、航空技術研究会へのお問い合わせ方法をご案内します。"}>
+<!-- 共通ヘッダー -->
+    
 
 
     <!-- ====================
@@ -212,9 +198,6 @@
 
 
     <!-- 共通フッター -->
-    <div id="footer"></div>
-    <script src="common.js"></script>
-
-</body>
-
-</html>
+    
+    
+</BaseLayout>

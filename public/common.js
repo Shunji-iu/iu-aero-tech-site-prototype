@@ -1,40 +1,17 @@
-// 共通ヘッダー・フッター
-fetch("components/footer.html")
-    .then(response => response.text())
-    .then(data => {
-        const footer = document.getElementById("footer");
-        if (footer) {
-            footer.innerHTML = data;
-        }
+const menuButton = document.querySelector(".menu-button");
+const mobileMenu = document.querySelector(".mobile-menu");
+
+if (menuButton && mobileMenu) {
+    menuButton.addEventListener("click", function () {
+        mobileMenu.classList.toggle("open");
     });
 
-fetch("components/header.html")
-    .then(response => response.text())
-    .then(data => {
-        const header = document.getElementById("header");
-        if (!header) {
-            return;
-        }
-
-        header.innerHTML = data;
-
-        const menuButton = document.querySelector(".menu-button");
-        const mobileMenu = document.querySelector(".mobile-menu");
-
-        if (!menuButton || !mobileMenu) {
-            return;
-        }
-
-        menuButton.addEventListener("click", function () {
-            mobileMenu.classList.toggle("open");
-        });
-
-        mobileMenu.querySelectorAll("a").forEach(function (link) {
-            link.addEventListener("click", function () {
-                mobileMenu.classList.remove("open");
-            });
+    mobileMenu.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            mobileMenu.classList.remove("open");
         });
     });
+}
 
 // Google Analytics
 (function () {

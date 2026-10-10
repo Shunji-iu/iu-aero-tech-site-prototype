@@ -1,0 +1,78 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import blogData from "../data/blog-data.json";
+
+const blogs = [...blogData].sort((a, b) =>
+  Number.parseInt(b.id.replace("blog", "")) - Number.parseInt(a.id.replace("blog", ""))
+);
+---
+
+<BaseLayout title={"ブログ | 航空技術研究会"} description={"茨城大学航空技術研究会の活動報告やイベント情報を掲載しています。"} ogTitle={"ブログ | 航空技術研究会"} ogDescription={"航空技術研究会の活動報告やイベント情報をお届けします。"}>
+<!-- 共通ヘッダー -->
+    
+
+    <!-- ====================
+         ブログ
+         ==================== -->
+
+    <main class="blog-page">
+
+        <div class="blog-header">
+
+            <p class="blog-subtitle">
+                BLOG
+            </p>
+
+            <h1>ブログ</h1>
+
+            <p>
+                航空技術研究会の活動の様子を紹介します。
+            </p>
+
+        </div>
+
+        <div id="blog-list">
+            {blogs.map((blog) => (
+                <article
+                    class="blog-card"
+                    id={blog.id}
+                    data-date={blog.date}
+                    data-title={blog.title}
+                    data-image={blog.image}
+                    data-text={blog.text}
+                >
+                    <img src={blog.image} alt={blog.title} class="blog-image" loading="lazy" decoding="async">
+                    <div class="blog-body">
+                        <p class="blog-date">{blog.date}</p>
+                        <h2 class="blog-title">{blog.title}</h2>
+                        <p class="blog-summary">{blog.summary}</p>
+                        <p class="read-more">タップして続きを読む →</p>
+                    </div>
+                </article>
+            ))}
+        </div>
+
+        <div id="pagination" class="pagination"></div>
+
+        <div id="blog-modal" class="blog-modal">
+
+            <div class="blog-modal-content">
+
+                <button class="close-modal">
+                    ×
+                </button>
+
+                <div id="modal-body"></div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- 共通フッター -->
+    
+    
+    <script is:inline src="blog.js"></script>
+</BaseLayout>

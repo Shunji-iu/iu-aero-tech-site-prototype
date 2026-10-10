@@ -1,20 +1,21 @@
 // ブログページ
 const blogsPerPage = 6;
 let currentPage = 1;
-let blogs = [];
+const blogCards = Array.from(document.querySelectorAll(".blog-card"));
 
-function openBlog(blog) {
+function openBlog(card) {
     const modal = document.getElementById("blog-modal");
     const body = document.getElementById("modal-body");
     if (!modal || !body) {
         return;
     }
 
+    const { date, title, image, text } = card.dataset;
     body.innerHTML = `
-        <p class="blog-date">${blog.date}</p>
-        <h1>${blog.title}</h1>
-        <img src="${blog.image}" alt="${blog.title}" class="modal-image" loading="lazy" decoding="async">
-        <div class="modal-text">${blog.text}</div>
+        <p class="blog-date">${date}</p>
+        <h1>${title}</h1>
+        <img src="${image}" alt="${title}" class="modal-image" loading="lazy" decoding="async">
+        <div class="modal-text">${text}</div>
     `;
     modal.classList.add("show");
 }
@@ -26,7 +27,7 @@ function createPagination() {
     }
 
     pagination.innerHTML = "";
-    const pageCount = Math.ceil(blogs.length / blogsPerPage);
+    const pageCount = Math.ceil(blogCards.length / blogsPerPage);
 
     if (currentPage > 1) {
         const previous = document.createElement("button");
@@ -61,48 +62,14 @@ function createPagination() {
 }
 
 function displayBlogs() {
-    const blogList = document.getElementById("blog-list");
-    if (!blogList) {
-        return;
-    }
-
-    blogList.innerHTML = "";
     const start = (currentPage - 1) * blogsPerPage;
-    blogs.slice(start, start + blogsPerPage).forEach(function (blog) {
-        const article = document.createElement("article");
-        article.className = "blog-card";
-        article.id = blog.id;
-        article.innerHTML = `
-            <img src="${blog.image}" alt="${blog.title}" class="blog-image" loading="lazy" decoding="async">
-            <div class="blog-body">
-                <p class="blog-date">${blog.date}</p>
-                <h2 class="blog-title">${blog.title}</h2>
-                <p class="blog-summary">${blog.summary}</p>
-                <p class="read-more">タップして続きを読む →</p>
-            </div>
-        `;
-        article.addEventListener("click", () => openBlog(blog));
-        blogList.appendChild(article);
+    blogCards.forEach(function (card, index) {
+        card.style.display = index >= start && index < start + blogsPerPage ? "" : "none";
     });
     createPagination();
 }
 
-function loadBlogs() {
-    const blogList = document.getElementById("blog-list");
-    if (!blogList) {
-        return;
-    }
-
-    fetch("blog-data.json")
-        .then(response => response.json())
-        .then(data => {
-            blogs = data.sort(function (a, b) {
-                return parseInt(b.id.replace("blog", ""))
-                    - parseInt(a.id.replace("blog", ""));
-            });
-            displayBlogs();
-        });
-}
+blogCards.forEach(card => card.addEventListener("click", () => openBlog(card)));
 
 const blogModal = document.getElementById("blog-modal");
 const closeModal = document.querySelector(".close-modal");
@@ -120,4 +87,4 @@ if (blogModal && closeModal) {
     });
 }
 
-loadBlogs();
+displayBlogs();
