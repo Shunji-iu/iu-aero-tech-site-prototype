@@ -1,6 +1,6 @@
 <header class="header">
   <div class="site-logo">
-    <a href="index.html">
+    <a href={import.meta.env.BASE_URL}>
       <div class="site-logo-text">
         <small>茨城大学</small>
         <span>航空技術研究会</span>
@@ -30,7 +30,7 @@
     <nav class="main-menu">
       <ul>
         <li><a href="activity.html">活動内容</a></li>
-        <li><a href="index.html#schedule">活動予定</a></li>
+        <li><a href={`${import.meta.env.BASE_URL}#schedule`}>活動予定</a></li>
         <li><a href="member.html">メンバー</a></li>
         <li><a href="blog.html">ブログ</a></li>
         <li><a href="join.html">入会希望の方</a></li>
@@ -51,7 +51,7 @@
     <a href="activity.html">活動内容</a>
     <a href="member.html">メンバー</a>
     <a href="blog.html">ブログ</a>
-    <a href="index.html#schedule">サークル活動予定</a>
+    <a href={`${import.meta.env.BASE_URL}#schedule`}>サークル活動予定</a>
     <a href="trial.html">茨苑祭・こうがく祭 特設ページ</a>
     <a href="join.html">入会希望の方へ</a>
     <a href="faq.html">よくある質問</a>
