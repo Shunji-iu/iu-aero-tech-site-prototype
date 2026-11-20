@@ -6,10 +6,15 @@ function filterNews(category) {
         tab.classList.toggle("active", tab.dataset.category === category);
     });
 
-    document.querySelectorAll(".news-item").forEach(function (item) {
-        item.style.display = category === "all" || item.dataset.category === category
-            ? ""
-            : "none";
+    const items = Array.from(document.querySelectorAll(".news-item"));
+    const visibleItems = items
+        .filter(function (item) {
+            return category === "all" || item.dataset.category === category;
+        })
+        .slice(0, 3);
+
+    items.forEach(function (item) {
+        item.style.display = visibleItems.includes(item) ? "" : "none";
     });
 }
 
@@ -34,6 +39,7 @@ function sortNews() {
 }
 
 sortNews();
+filterNews("all");
 
 // スライドショー
 const slides = document.querySelectorAll(".slide");

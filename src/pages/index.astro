@@ -3,12 +3,47 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 import scheduleData from "../data/schedule-data.json";
 
-const blogs = (await getCollection("blog")).sort(
-    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
-const latestBlog = blogs[0];
-const latestBlogDate = latestBlog?.data.date.toISOString().slice(0, 10);
-const latestBlogDisplayDate = latestBlogDate?.replace(/-/g, ".");
+// 手動で更新するイベント・お知らせ########################################
+const eventNewsItems = [
+    {
+        datetime: "2026-10-03",
+        title: "11/14(土)-11/15(日)に茨苑祭が開催されます！(水戸キャンパス)",
+        href: "trial.html"
+    },
+    {
+        datetime: "2026-10-02",
+        title: "11/07(土)にこうがく祭が開催されます！(日立キャンパス)",
+        href: "trial.html"
+    }
+];
+//ここまで#########################################################################
+
+const blogs = await getCollection("blog");
+const eventItems = eventNewsItems
+    .map((item) => ({
+        ...item,
+        displayDate: item.datetime.replace(/-/g, "."),
+        category: "event" as const,
+        categoryLabel: "イベント"
+    }))
+    .sort((a, b) => b.datetime.localeCompare(a.datetime))
+    .slice(0, 3);
+const blogItems = blogs
+    .map(({ data }) => {
+        const datetime = data.date.toISOString().slice(0, 10);
+        return {
+            datetime,
+            displayDate: datetime.replace(/-/g, "."),
+            title: `活動ブログ「${data.title}」を更新しました`,
+            href: "blog.html",
+            category: "blog" as const,
+            categoryLabel: "ブログ"
+        };
+    })
+    .sort((a, b) => b.datetime.localeCompare(a.datetime))
+    .slice(0, 3);
+const newsItems = [...eventItems, ...blogItems]
+    .sort((a, b) => b.datetime.localeCompare(a.datetime))
 ---
 
 <BaseLayout title={"茨城大学 航空技術研究会"} description={"茨城大学航空技術研究会の公式サイトです。飛行機やドローンの設計・製作、飛行活動、地域イベントへの参加などを紹介しています。"} ogTitle={"茨城大学 航空技術研究会"} ogDescription={"ものづくりを、空へ。茨城大学航空技術研究会の活動やイベントを紹介します。"}>
@@ -102,27 +137,13 @@ const latestBlogDisplayDate = latestBlogDate?.replace(/-/g, ".");
             <!-- お知らせ一覧 -->
             <div class="news-list" id="news-list">
 
-                <!--更新時ここを変更■■■---------------------------------------------------->
-
-                <article class="news-item" data-category="event">
-                    <time datetime="2026-11-17">2026.10.03</time>
-                    <span class="news-category">イベント</span>
-                    <a href="trial.html">11/14(土)-11/15(日)に茨苑祭が開催されます！(水戸キャンパス)</a>
-                </article>
-
-                <article class="news-item" data-category="event">
-                    <time datetime="2026-11-14">2026.10.02</time>
-                    <span class="news-category">イベント</span>
-                    <a href="trial.html">11/07(土)にこうがく祭が開催されます！(日立キャンパス)</a>
-                </article>
-
-                {latestBlog && latestBlogDate && latestBlogDisplayDate && (
-                    <article class="news-item" data-category="blog">
-                        <time datetime={latestBlogDate}>{latestBlogDisplayDate}</time>
-                        <span class="news-category">ブログ</span>
-                        <a href="blog.html">活動ブログ「{latestBlog.data.title}」を更新しました</a>
+                {newsItems.map((item) => (
+                    <article class="news-item" data-category={item.category}>
+                        <time datetime={item.datetime}>{item.displayDate}</time>
+                        <span class="news-category">{item.categoryLabel}</span>
+                        <a href={item.href}>{item.title}</a>
                     </article>
-                )}
+                ))}
 
             </div>
         </section>

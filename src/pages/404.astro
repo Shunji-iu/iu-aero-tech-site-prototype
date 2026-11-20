@@ -1,8 +1,12 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const basePath = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
 ---
 
-<BaseLayout title={"404 | 航空技術研究会"} description={"お探しのページが見つかりませんでした。茨城大学航空技術研究会のトップページへ戻れます。"} ogTitle={"ページが見つかりません | 航空技術研究会"} ogDescription={"お探しのページが見つかりませんでした。"} robots={"noindex, follow"}>
+<BaseLayout title={"404 | 航空技術研究会"} description={"お探しのページが見つかりませんでした。茨城大学航空技術研究会のトップページへ戻れます。"} ogTitle={"ページが見つかりません | 航空技術研究会"} ogDescription={"お探しのページが見つかりませんでした。"} robots={"noindex, follow"} bodyClass="error-page">
 <!-- 雲 -->
     <div class="cloud cloud1"></div>
     <div class="cloud cloud2"></div>
@@ -21,7 +25,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             移動または削除された可能性があります。
         </p>
 
-        <a href="index.html" class="home-button">
+        <a href={basePath} class="home-button">
 
             ホームへ戻る
 

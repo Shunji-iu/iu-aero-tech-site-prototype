@@ -2563,11 +2563,17 @@ body {
 
 .error-page {
     margin: 0;
+    padding-top: 0;
     overflow: hidden;
     height: 100vh;
     background: linear-gradient( #6ec8ff, #bfe9ff );
     position: relative;
     font-family: sans-serif;
+}
+
+.error-page > .header,
+.error-page > .footer {
+    display: none;
 }
 
 /*--------------------
